@@ -8,7 +8,6 @@ import (
 	"github.com/jonasssneto/go-crud/src/configuration/validation"
 	"github.com/jonasssneto/go-crud/src/controller/model/request"
 	"github.com/jonasssneto/go-crud/src/model"
-	"github.com/jonasssneto/go-crud/src/view"
 	"go.uber.org/zap"
 )
 
@@ -42,7 +41,9 @@ func (uc *userControllerInterface) Create(c *gin.Context) {
 		UserRequest.Age,
 	)
 
-	if err := uc.service.Create(domain); err != nil {
+	err := uc.service.Create(domain)
+
+	if err != nil {
 		c.JSON(err.Code, err)
 		return
 	}
@@ -51,9 +52,7 @@ func (uc *userControllerInterface) Create(c *gin.Context) {
 		"CreateUser controller executed successfully",
 		zap.String("journey", "createUser"))
 
-	c.JSON(http.StatusCreated, view.ConvertDomainToResponse(
-		domain,
-	))
+	c.JSON(http.StatusCreated, "")
 }
 
 func (uc *userControllerInterface) Update(c *gin.Context) {

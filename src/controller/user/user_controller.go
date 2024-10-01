@@ -5,7 +5,7 @@ import (
 	"github.com/jonasssneto/go-crud/src/model/service"
 )
 
-func NewUserConctrollerInterface(serviceInterface service.UserDomainService) UserControllerInterface {
+func NewUserControllerInterface(serviceInterface service.UserDomainService) UserControllerInterface {
 	return &userControllerInterface{
 		service: serviceInterface,
 	}
